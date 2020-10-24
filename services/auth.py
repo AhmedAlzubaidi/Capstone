@@ -20,16 +20,16 @@ def get_token_auth_header():
 
     if not result:
         raise AuthError({
-            'code': '',
-            'description': ''
+            'code': 'bad_request',
+            'description': 'no token is provided'
         }, 400)
 
     result = result.split(' ')
 
     if len(result) != 2 or result[0] != 'Bearer':
         raise AuthError({
-            'code': '',
-            'description': ''
+            'code': 'bad_request',
+            'description': 'token has wrong format'
         }, 400)
 
     return result[1]
@@ -38,14 +38,14 @@ def get_token_auth_header():
 def check_permissions(permission, payload):
     if 'permissions' not in payload:
         raise AuthError({
-            'code': '',
-            'description': ''
+            'code': 'bad_request',
+            'description': 'payload does not contain permissions'
         }, 400)
 
     if permission not in payload['permissions']:
         raise AuthError({
-            'code': '',
-            'description': ''
+            'code': 'no_permission',
+            'description': 'role does not have sufficient permissions'
         }, 401)
 
     return True
@@ -81,13 +81,13 @@ def verify_decode_jwt(token):
         except JWT.JWTClaimsError:
             raise AuthError({"code": "invalid_claims",
                              "description":
-                                 "incorrect claims,"
-                                 "please check the audience and issuer"}, 401)
+                                 "incorrect claims, \
+                                 please check the audience and issuer"}, 401)
         except Exception:
             raise AuthError({"code": "invalid_header",
                              "description":
-                                 "Unable to parse authentication"
-                                 " token."}, 401)
+                                 "Unable to parse authentication \
+                                  token."}, 401)
 
 
 def requires_auth(permission=''):
