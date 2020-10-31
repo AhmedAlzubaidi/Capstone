@@ -1,7 +1,7 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
-from models.models import setup_db
-from controllers.BlogsController import blogs
+from models.blog import setup_db
+from controllers.blogs_controller import blogs
 
 
 app = Flask(__name__)

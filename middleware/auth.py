@@ -95,7 +95,7 @@ def requires_auth(f):
     def decorated(*args, **kwargs):
         if 'profile' not in session:
             # Redirect to Login page here
-            return redirect('/')
+            return redirect('https://dev-ci5z6zo4.eu.auth0.com/authorize?response_type=token&audience=Capstone&client_id=m9aIZpy47lGy9nMTkk6sa64LNU1QTUTK&redirect_uri=http/localhost/blogs')
         return f(*args, **kwargs)
 
     return decorated
