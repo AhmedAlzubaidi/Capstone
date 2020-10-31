@@ -1,16 +1,13 @@
-import os
-from flask import Flask, request, jsonify
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, jsonify
 from flask_cors import CORS
+from models.models import setup_db
 from controllers.BlogsController import blogs
 
 
 app = Flask(__name__)
 app.config.from_object('config')
 CORS(app)
-db = SQLAlchemy()
-
-
+setup_db(app)
 app.register_blueprint(blogs, url_prefix='/blogs')
 
 

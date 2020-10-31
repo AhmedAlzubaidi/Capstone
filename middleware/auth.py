@@ -1,12 +1,12 @@
 import json
-from flask import request
+from flask import request, redirect, session
 from functools import wraps
 from jose import JWT
 from urllib.request import urlopen
 
 AUTH0_DOMAIN = 'dev-ci5z6zo4.eu.auth0.com'
 ALGORITHMS = ['RS256']
-API_AUDIENCE = 'CoffeShop'
+API_AUDIENCE = 'Capstone'
 
 
 class AuthError(Exception):
@@ -90,15 +90,12 @@ def verify_decode_jwt(token):
                                   token."}, 401)
 
 
-def requires_auth(permission=''):
-    def requires_auth_decorator(f):
-        @wraps(f)
-        def wrapper(*args, **kwargs):
-            token = get_token_auth_header()
-            payload = verify_decode_jwt(token)
-            check_permissions(permission, payload)
-            return f(payload, *args, **kwargs)
+def requires_auth(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        if 'profile' not in session:
+            # Redirect to Login page here
+            return redirect('/')
+        return f(*args, **kwargs)
 
-        return wrapper
-
-    return requires_auth_decorator
+    return decorated
