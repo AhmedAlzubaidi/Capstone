@@ -2,6 +2,7 @@ import os
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
+from controllers.BlogsController import blogs
 
 
 app = Flask(__name__)
@@ -9,7 +10,8 @@ app.config.from_object('config')
 CORS(app)
 db = SQLAlchemy()
 
-# TODO routes declaration
+
+app.register_blueprint(blogs, url_prefix='/blogs')
 
 
 @app.errorhandler(401)
