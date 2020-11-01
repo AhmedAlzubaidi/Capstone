@@ -1,7 +1,7 @@
 import json
 from flask import request, redirect, session
 from functools import wraps
-from jose import JWT
+from jose import jwt
 from urllib.request import urlopen
 
 AUTH0_DOMAIN = 'dev-ci5z6zo4.eu.auth0.com'
@@ -54,7 +54,7 @@ def check_permissions(permission, payload):
 def verify_decode_jwt(token):
     jsonurl = urlopen("https://" + AUTH0_DOMAIN + "/.well-known/jwks.json")
     jwks = json.loads(jsonurl.read())
-    unverified_header = JWT.get_unverified_header(token)
+    unverified_header = jwt.get_unverified_header(token)
     rsa_key = {}
     for key in jwks["keys"]:
         if key["kid"] == unverified_header["kid"]:
@@ -68,17 +68,17 @@ def verify_decode_jwt(token):
 
     if rsa_key:
         try:
-            return JWT.decode(
+            return jwt.decode(
                 token,
                 rsa_key,
                 algorithms=ALGORITHMS,
                 audience=API_AUDIENCE,
                 issuer="https://" + AUTH0_DOMAIN + "/"
             )
-        except JWT.ExpiredSignatureError:
+        except jwt.ExpiredSignatureError:
             raise AuthError({"code": "token_expired",
                              "description": "token is expired"}, 401)
-        except JWT.JWTClaimsError:
+        except jwt.JWTClaimsError:
             raise AuthError({"code": "invalid_claims",
                              "description":
                                  "incorrect claims, \
@@ -90,12 +90,15 @@ def verify_decode_jwt(token):
                                   token."}, 401)
 
 
-def requires_auth(f):
-    @wraps(f)
-    def decorated(*args, **kwargs):
-        if 'profile' not in session:
-            # Redirect to Login page here
-            return redirect('https://dev-ci5z6zo4.eu.auth0.com/authorize?response_type=token&audience=Capstone&client_id=m9aIZpy47lGy9nMTkk6sa64LNU1QTUTK&redirect_uri=http/localhost/blogs')
-        return f(*args, **kwargs)
+def requires_auth(permission=''):
+    def requires_auth_decorator(f):
+        @wraps(f)
+        def wrapper(*args, **kwargs):
+            token = get_token_auth_header()
+            payload = verify_decode_jwt(token)
+            check_permissions(permission, payload)
+            return f(payload, *args, **kwargs)
 
-    return decorated
+        return wrapper
+
+    return requires_auth_decorator

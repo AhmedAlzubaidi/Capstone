@@ -15,8 +15,6 @@ def index():
     })
 
 
-# @requires_auth('view_blog'), @requires_auth('create_blog'), @requires_auth('delete_blogs')
-@requires_auth('view_blog')
 @blogs.route('/<int:blog_id>')
 def get_blog(blog_id, payload):
     blog = Blog.query.get(blog_id)
@@ -35,10 +33,9 @@ def get_blog(blog_id, payload):
 
 
 @requires_auth('create_blog')
-@blogs.route('/', method='POST')
+@blogs.route('/', methods=['POST'])
 def store(payload):
     data = request.get_json()
-    blog = None
 
     try:
         blog = Blog(
@@ -48,8 +45,10 @@ def store(payload):
         )
 
         db.session.add(blog)
+        db.session.flush(blog)
         db.session.commit()
-    except SQLAlchemyError as e:
+    except (SQLAlchemyError, AttributeError) as e:
+        blog = None
         db.session.rollback()
     finally:
         db.session.close()
@@ -64,8 +63,9 @@ def store(payload):
 
 
 @requires_auth('edit_blog')
-@blogs.route('/<int:blog_id>', method='PUT')
+@blogs.route('/<int:blog_id>', methods=['PUT'])
 def edit_blog(blog_id, payload):
+    data = request.get_json()
     blog = Blog.query.get(blog_id)
 
     if not blog:
@@ -78,7 +78,7 @@ def edit_blog(blog_id, payload):
 
 
 @requires_auth()
-@blogs.route('/<int:blog_id>', method='DELETE')
+@blogs.route('/<int:blog_id>', methods=['DELETE'])
 def delete_blog(blog_id, payload):
     blog = Blog.query.get(blog_id)
 
