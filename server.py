@@ -45,7 +45,3 @@ def bad_request(error):
         "error": 400,
         "message": "Bad Request"
     }), 400
-
-
-if __name__ == '__main__':
-    app.run(host='localhost', port=8080)
