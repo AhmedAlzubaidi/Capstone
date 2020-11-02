@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, redirect
 from flask_cors import CORS
 from models.blog import setup_db
 from controllers.blogs_controller import blogs
@@ -9,6 +9,11 @@ app.config.from_object('config')
 CORS(app)
 setup_db(app)
 app.register_blueprint(blogs, url_prefix='/blogs')
+
+
+@app.route('/')
+def index():
+    redirect('/blogs')
 
 
 @app.errorhandler(401)
