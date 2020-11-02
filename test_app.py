@@ -2,7 +2,7 @@ import os
 import json
 import unittest
 from models.blog import setup_db, db, Blog
-from server import app
+from app import app
 
 # result = self.client().get('/questions?page=1')
 # result = self.client().post('/quizzes', json={
