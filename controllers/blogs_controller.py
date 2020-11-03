@@ -4,7 +4,8 @@ from sqlalchemy.exc import SQLAlchemyError
 from models.blog import Blog, db
 from middleware.auth import requires_auth
 
-blogs = Blueprint('blogs', __name__, url_prefix='/blogs', template_folder='templates')
+blogs = Blueprint('blogs', __name__,
+                  url_prefix='/blogs', template_folder='templates')
 
 
 @blogs.route('/')
