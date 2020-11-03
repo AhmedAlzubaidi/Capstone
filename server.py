@@ -13,7 +13,7 @@ app.register_blueprint(blogs, url_prefix='/blogs')
 
 @app.route('/')
 def index():
-    redirect('/blogs')
+    return redirect('/blogs')
 
 
 @app.errorhandler(401)
@@ -53,4 +53,4 @@ def bad_request(error):
 
 
 if __name__ == '__main__':
-    app.run(host='localhost', port=8080)
+    app.run(host='localhost', port=5000)
