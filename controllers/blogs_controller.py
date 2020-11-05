@@ -16,8 +16,9 @@ def index():
     })
 
 
+@requires_auth('view_blog')
 @blogs.route('/<int:blog_id>')
-def get_blog(blog_id, payload):
+def get_blog(payload, blog_id):
     blog = Blog.query.get(blog_id)
 
     if not blog:
@@ -65,7 +66,7 @@ def store(payload):
 
 @requires_auth('edit_blog')
 @blogs.route('/<int:blog_id>', methods=['PUT'])
-def edit_blog(blog_id, payload):
+def edit_blog(payload, blog_id):
     data = request.get_json()
     blog = Blog.query.get(blog_id)
 
@@ -80,7 +81,7 @@ def edit_blog(blog_id, payload):
 
 @requires_auth()
 @blogs.route('/<int:blog_id>', methods=['DELETE'])
-def delete_blog(blog_id, payload):
+def delete_blog(payload, blog_id):
     blog = Blog.query.get(blog_id)
 
     if not blog:
