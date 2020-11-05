@@ -1,6 +1,6 @@
 # Blogs API
 ## Getting Started
-To test the api on heroku you can install and run postman collection from \<URL>
+To test the api on heroku you can import and run [this postman collection](Capstone.postman_collection.json)
 
 ### Installing Dependencies
 #### Python 3.8.6
