@@ -1,0 +1,255 @@
+{
+	"info": {
+		"_postman_id": "a35bbe22-bb26-4847-bf73-4afe30f430ce",
+		"name": "Capstone",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create a blog",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Example\",\r\n    \"content\": \"Example\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}",
+					"host": [
+						"{{base_url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create another blog",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Another Example\",\r\n    \"content\": \"Another Example\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}",
+					"host": [
+						"{{base_url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all blogs",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "10f2cffb-46a7-42dd-b275-b42d8a809bc5",
+						"exec": [
+							"const blogs = pm.response.json().blogs;\r",
+							"if(blogs.length > 1) {\r",
+							"    pm.collectionVariables.set('first_blog_id', blogs[blogs.length - 2].id);\r",
+							"    pm.collectionVariables.set('second_blog_id', blogs[blogs.length - 1].id)\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}",
+					"host": [
+						"{{base_url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get one blog",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}{{first_blog_id}}",
+					"host": [
+						"{{base_url}}{{first_blog_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update a blog",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Update Example\",\r\n    \"content\": \"Update Example\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}{{first_blog_id}}",
+					"host": [
+						"{{base_url}}{{first_blog_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete first blog",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}{{first_blog_id}}",
+					"host": [
+						"{{base_url}}{{first_blog_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete second blog",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}{{second_blog_id}}",
+					"host": [
+						"{{base_url}}{{second_blog_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "8442e717-0db9-46a7-ac5e-94f27c08d790",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "fbd1e052-89b6-4eef-b97a-3741089d0c7d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "1cd92e7a-08f2-4da1-be64-0338b7d56321",
+			"key": "base_url",
+			"value": "https://limitless-capstone.herokuapp.com/blogs/"
+		},
+		{
+			"id": "571f57fb-cdee-4820-a646-655b9899fffa",
+			"key": "access_token",
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InZNYjVTYWF6bDVGUDczbjJtUWF5WCJ9.eyJpc3MiOiJodHRwczovL2Rldi1jaTV6NnpvNC5ldS5hdXRoMC5jb20vIiwic3ViIjoieUZlNEFvakFIdVdRekh3VWZQR1FkQzVKZ3dWVFBIRGhAY2xpZW50cyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3QvIiwiaWF0IjoxNjA0NDA3ODYyLCJleHAiOjE2MDQ0OTQyNjIsImF6cCI6InlGZTRBb2pBSHVXUXpId1VmUEdRZEM1Smd3VlRQSERoIiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.YS4PvMnpXMfcVUBsCAh4Bc1lxZeD63C1pxAmFvNcU1XnvjqHXvxDaU1SpxNnLIUsoANDs27vJWs6-Q81KCkvhmB8wW5ym9KnAHmUWFkbIwButer9ya0GwamVxwtpL3N-0odpLXFtnkWqk67n-8qnftvdcgHBvA0BdozEYHdsheH4NMttA6KpUuVem8dHipw63mhKP1zoewa_DFign_v6-u9SEsBh6tkJONa7CzOeIyyhKU4UOb1NsXBa-kDMPiK6uP6fo1SgI0p2-MNQW7WomgpycL_SqLQVEAQlDUY3Wax_XYUcwg-B8YZ2iviloNTfQ5peAxAFX3KjnmyouJA-2w"
+		},
+		{
+			"id": "3b83b941-5386-4466-b5ba-00a235e049a5",
+			"key": "first_blog_id",
+			"value": "1"
+		},
+		{
+			"id": "d57babe9-9329-448c-accd-93ce0774dd07",
+			"key": "second_blog_id",
+			"value": "1"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
