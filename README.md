@@ -1,5 +1,6 @@
 # Blogs API
 ## Getting Started
+##### This API is hosted at https://limitless-capstone.herokuapp.com/blogs/
 To test the api on heroku you can import and run [this postman collection](Capstone.postman_collection.json)
 
 ### Installing Dependencies
