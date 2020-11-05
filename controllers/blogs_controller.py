@@ -82,7 +82,6 @@ def edit_blog(payload, blog_id):
 @requires_auth()
 @blogs.route('/<int:blog_id>', methods=['DELETE'])
 def delete_blog(payload, blog_id):
-    print('Payload is none' if payload is None else 'Payload is not none')
     blog = Blog.query.get(blog_id)
 
     if not blog:
