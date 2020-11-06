@@ -2,7 +2,6 @@
 ## Getting Started
 ##### This API is hosted at https://limitless-capstone.herokuapp.com/blogs/
 To test the api on heroku you can import and run [this postman collection](Capstone.postman_collection.json)
-
 ### Installing Dependencies
 #### Python 3.8.6
 #### PIP Dependencies
@@ -42,7 +41,11 @@ python test_flaskr.py
 ## API Reference
 ### Getting Started
 - Base URL: `https://limitless-capstone.herokuapp.com/blogs`
-- Authentication: This app uses auth0.
+- Authentication: This app uses auth0 and has two roles.
+```bash
+- admin
+- user
+```
 ### Error Handling
 Errors are returned as JSON objects in the following format:
 ```json

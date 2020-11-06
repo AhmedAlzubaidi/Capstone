@@ -6,7 +6,7 @@ from urllib.request import urlopen
 
 AUTH0_DOMAIN = 'dev-ci5z6zo4.eu.auth0.com'
 ALGORITHMS = ['RS256']
-API_AUDIENCE = 'Capstone'
+API_AUDIENCE = 'https://limitless-capstone.herokuapp.com/blogs'
 
 
 class AuthError(Exception):

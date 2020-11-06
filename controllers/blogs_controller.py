@@ -79,7 +79,7 @@ def edit_blog(payload, blog_id):
     })
 
 
-@requires_auth()
+@requires_auth('delete_own_blog')
 @blogs.route('/<int:blog_id>', methods=['DELETE'])
 def delete_blog(payload, blog_id):
     blog = Blog.query.get(blog_id)
@@ -88,7 +88,7 @@ def delete_blog(payload, blog_id):
         abort(404)
 
     if blog.user_id != payload['sub']:
-        requires_auth('delete_blogs')
+        requires_auth('delete_blog')
 
     return jsonify({
         'success': True
