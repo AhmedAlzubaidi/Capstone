@@ -1,8 +1,36 @@
 # Blogs API
+This is the final project for **Udacity Full Stack Nanodegree** program.
+
 ## Getting Started
 ##### This API is hosted at https://limitless-capstone.herokuapp.com/blogs/
 To test the api on heroku you can import and run [this postman collection](Capstone.postman_collection.json)
-### Installing Dependencies
+## Auth0 setup
+- Create a new Auth0 Account
+- Navigate to your Account Settings
+    - set **Default Audience** to **your api audience**
+    - set **Default Directory** to **Username-Password-Authentication**
+- Create a new regular web application
+- Navigate to your app settings then advance settings
+    - Enable **Password** grant type
+- Create a new api
+- Navigate to your api Settings:
+    - Enable **RBAC**
+    - Enable **Add Permissions in the Access Token**
+- Navigate to your api permissions and add these permissions
+    - create_blog
+    - delete_blog
+    - delete_own_blog
+    - edit_blog
+    - view_blog
+- Create new roles
+    - Admin
+        - has all permissions
+    - User
+        - create_blog
+        - delete_own_blog
+        - edit_blog
+        - view_blog
+## Installing Dependencies
 #### Python 3.8.6
 #### PIP Dependencies
 
@@ -46,7 +74,7 @@ python test_flaskr.py
 - admin
 - user
 ```
-### Error Handling
+## Error Handling
 Errors are returned as JSON objects in the following format:
 ```json
 {
@@ -60,7 +88,7 @@ The API will return one error type when requests fail:
 - 500 Internal Server Error
 - 400 Bad Request
 - 404 Not Found
-### Endpoints
+## Endpoints
 #### GET /blogs
 - General:
     - Returns a list of blog objects and a success value.
