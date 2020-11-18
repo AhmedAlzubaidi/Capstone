@@ -6,6 +6,148 @@
 	},
 	"item": [
 		{
+			"name": "login as user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a19e9248-0a1e-4447-8e09-52d343aa2c55",
+						"exec": [
+							"const token = pm.response.json().access_token;\r",
+							"pm.collectionVariables.set('access_token', token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"grant_type\": \"password\",\r\n    \"username\": \"kdgndg@hotmail.com\",\r\n    \"password\": \"testCapstone12341234\",\r\n    \"audience\": \"https://limitless-capstone.herokuapp.com/blogs\",\r\n    \"scope\": \"general\",\r\n    \"client_id\": \"m9aIZpy47lGy9nMTkk6sa64LNU1QTUTK\",\r\n    \"client_secret\": \"ufV1U6P0U6ek6q_ZfUkG16o9zFlQ0Bq8Uuv1KNx1Asy6xgR6w71Xoyxr0nNyYURY\",\r\n    \"redirect_uri\": \"https://www.getpostman.com/oauth2/callback\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dev-ci5z6zo4.eu.auth0.com/oauth/token",
+					"protocol": "https",
+					"host": [
+						"dev-ci5z6zo4",
+						"eu",
+						"auth0",
+						"com"
+					],
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login as admin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6648f4cd-7574-40ae-9f77-e072e6167c68",
+						"exec": [
+							"const token = pm.response.json().access_token;\r",
+							"pm.collectionVariables.set('access_token', token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"grant_type\": \"password\",\r\n    \"username\": \"djhfgds@hotmail.com\",\r\n    \"password\": \"testCapstone12341234\",\r\n    \"audience\": \"https://limitless-capstone.herokuapp.com/blogs\",\r\n    \"scope\": \"general\",\r\n    \"client_id\": \"m9aIZpy47lGy9nMTkk6sa64LNU1QTUTK\",\r\n    \"client_secret\": \"ufV1U6P0U6ek6q_ZfUkG16o9zFlQ0Bq8Uuv1KNx1Asy6xgR6w71Xoyxr0nNyYURY\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dev-ci5z6zo4.eu.auth0.com/oauth/token",
+					"protocol": "https",
+					"host": [
+						"dev-ci5z6zo4",
+						"eu",
+						"auth0",
+						"com"
+					],
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all blogs",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "10f2cffb-46a7-42dd-b275-b42d8a809bc5",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}",
+					"host": [
+						"{{base_url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "create a blog",
 			"request": {
 				"auth": {
@@ -33,6 +175,39 @@
 					"raw": "{{base_url}}",
 					"host": [
 						"{{base_url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update a blog",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Update Example\",\r\n    \"content\": \"Update Example\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}{{first_blog_id}}",
+					"host": [
+						"{{base_url}}{{first_blog_id}}"
 					]
 				}
 			},
@@ -72,12 +247,12 @@
 			"response": []
 		},
 		{
-			"name": "get all blogs",
+			"name": "get last two blogs ids",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "10f2cffb-46a7-42dd-b275-b42d8a809bc5",
+						"id": "449465cb-f29c-4490-8db7-afdb8a90d08d",
 						"exec": [
 							"const blogs = pm.response.json().blogs;\r",
 							"if(blogs.length > 1) {\r",
@@ -90,6 +265,16 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -116,39 +301,6 @@
 				},
 				"method": "GET",
 				"header": [],
-				"url": {
-					"raw": "{{base_url}}{{first_blog_id}}",
-					"host": [
-						"{{base_url}}{{first_blog_id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "update a blog",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{access_token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"title\": \"Update Example\",\r\n    \"content\": \"Update Example\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
 					"raw": "{{base_url}}{{first_blog_id}}",
 					"host": [
@@ -231,22 +383,22 @@
 	],
 	"variable": [
 		{
-			"id": "1cd92e7a-08f2-4da1-be64-0338b7d56321",
+			"id": "d360dfd1-64d3-482e-8456-6bfc3b5f79f4",
 			"key": "base_url",
 			"value": "https://limitless-capstone.herokuapp.com/blogs/"
 		},
 		{
-			"id": "571f57fb-cdee-4820-a646-655b9899fffa",
+			"id": "cd60fd51-501a-4d53-8e20-7b576995ebd4",
 			"key": "access_token",
 			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InZNYjVTYWF6bDVGUDczbjJtUWF5WCJ9.eyJpc3MiOiJodHRwczovL2Rldi1jaTV6NnpvNC5ldS5hdXRoMC5jb20vIiwic3ViIjoieUZlNEFvakFIdVdRekh3VWZQR1FkQzVKZ3dWVFBIRGhAY2xpZW50cyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3QvIiwiaWF0IjoxNjA0NDA3ODYyLCJleHAiOjE2MDQ0OTQyNjIsImF6cCI6InlGZTRBb2pBSHVXUXpId1VmUEdRZEM1Smd3VlRQSERoIiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.YS4PvMnpXMfcVUBsCAh4Bc1lxZeD63C1pxAmFvNcU1XnvjqHXvxDaU1SpxNnLIUsoANDs27vJWs6-Q81KCkvhmB8wW5ym9KnAHmUWFkbIwButer9ya0GwamVxwtpL3N-0odpLXFtnkWqk67n-8qnftvdcgHBvA0BdozEYHdsheH4NMttA6KpUuVem8dHipw63mhKP1zoewa_DFign_v6-u9SEsBh6tkJONa7CzOeIyyhKU4UOb1NsXBa-kDMPiK6uP6fo1SgI0p2-MNQW7WomgpycL_SqLQVEAQlDUY3Wax_XYUcwg-B8YZ2iviloNTfQ5peAxAFX3KjnmyouJA-2w"
 		},
 		{
-			"id": "3b83b941-5386-4466-b5ba-00a235e049a5",
+			"id": "292719b4-e8a3-4164-bc88-6c341045d59c",
 			"key": "first_blog_id",
 			"value": "1"
 		},
 		{
-			"id": "d57babe9-9329-448c-accd-93ce0774dd07",
+			"id": "07af566e-2295-4f59-9011-9735374ec015",
 			"key": "second_blog_id",
 			"value": "1"
 		}
