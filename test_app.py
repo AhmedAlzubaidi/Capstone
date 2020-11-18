@@ -19,14 +19,7 @@ from server import app
 class CapstoneTestCase(unittest.TestCase):
     """This class represents the capstone test case"""
     headers = {
-        'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InZNYjVTYWF6bDVGUDczbjJtUWF5WCJ9\
-        .eyJpc3MiOiJodHRwczovL2Rldi1jaTV6NnpvNC5ldS5hdXRoMC5jb20vIiwic3ViIjoieUZlNEFvakFIdVdRekh3VWZQR1FkQzVKZ\
-        3dWVFBIRGhAY2xpZW50cyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3QvIiwiaWF0IjoxNjA0NDAyNDExLCJleHAiOjE2MDQ0ODg4M\
-        TEsImF6cCI6InlGZTRBb2pBSHVXUXpId1VmUEdRZEM1Smd3VlRQSERoIiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.FDkK5m\
-        AHYAww-JO_S2wWnvSVnubsoblVuypEH89mCA6I4Pb6Xtw_I2bf0Mgg8dgkvr9pPN2Ke2VmyyiOrGb2wzji6hsetElI2uetXf2YcJqg\
-        _07bX_0AjRHZFHQy5otcbQEkQ6PUw8RPcH3jNgtoT4HYQyUJpeE7T3jG_ugqtMDRh7RhJikuDpTuczYA484tOkQfBKb0v_cGiDlo1E\
-        N5TQUsqKZq9QXwFyPxNvURNjS-f2hfd8v1bgC_BTEK2NmyEHrt5IfttC7ooSKH-g_wTb7Z6eGLkJiv4zIaqWF66kVUoOS54MWalrnt\
-        CyElk3c6CSPD2YJyIwwAJ_-1ZBG6rw'
+        'Authorization': 'Bearer ' + '<access_token>'
     }
 
     def setUp(self):

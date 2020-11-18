@@ -13,7 +13,14 @@ def setup_db(app, database_path=None):
 class Blog(db.Model):
     __tablename__ = 'blogs'
     id = db.Column(db.Integer, primary_key=True, nullable=False)
-    # TODO compare it with auth0 token
     author_id = db.Column(db.String, nullable=False)
     title = db.Column(db.String, nullable=False)
     content = db.Column(db.String, nullable=False)
+
+    def format(self):
+        return {
+            'id': self.id,
+            'author_id': self.author_id,
+            'title': self.title,
+            'content': self.content
+        }

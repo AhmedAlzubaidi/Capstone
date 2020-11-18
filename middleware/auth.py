@@ -1,5 +1,5 @@
 import json
-from flask import request, redirect, session
+from flask import request
 from functools import wraps
 from jose import jwt
 from urllib.request import urlopen
