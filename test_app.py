@@ -47,12 +47,6 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['success'], True)
         self.assertIsNotNone(data['blogs'])
 
-    def test_get_blog(self):
-        result = self.client().get('/blogs/1')
-        data = json.loads(result.data)
-        self.assertEqual(result.status_code, 200)
-        self.assertEqual(data['success'], True)
-
     def test_store_blog(self):
         result = self.client().post('/blogs', headers=self.headers)
         data = json.loads(result.data)
@@ -60,10 +54,16 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['success'], True)
         self.assertIsNone(data['blog'])
 
+    def test_get_blog(self):
+        result = self.client().get('/blogs/1')
+        data = json.loads(result.data)
+        self.assertEqual(result.status_code, 200)
+        self.assertEqual(data['success'], True)
+
     def test_edit_blog(self):
         result = self.client().put('/blogs/1', headers=self.headers, json={
-            'title': '',
-            'content': ''
+            'title': 'Testing update route',
+            'content': 'Testing update route'
         })
         data = json.loads(result.data)
         self.assertEqual(result.status_code, 200)

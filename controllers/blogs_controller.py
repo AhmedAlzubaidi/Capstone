@@ -24,13 +24,10 @@ def get_blog(payload, blog_id):
     if not blog:
         abort(404)
 
-    data = {
-        'user_id': payload['sub'],
-        'blog': blog.format()
-    }
     return jsonify({
         'success': True,
-        'data': data
+        'user_id': payload['sub'],
+        'blog': blog.format()
     })
 
 
