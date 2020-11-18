@@ -383,22 +383,22 @@
 	],
 	"variable": [
 		{
-			"id": "d360dfd1-64d3-482e-8456-6bfc3b5f79f4",
+			"id": "979143b5-a397-45cf-ae53-23da57c9368f",
 			"key": "base_url",
 			"value": "https://limitless-capstone.herokuapp.com/blogs/"
 		},
 		{
-			"id": "cd60fd51-501a-4d53-8e20-7b576995ebd4",
+			"id": "13c049c1-33fd-4a0a-9420-c97a409a0fe5",
 			"key": "access_token",
 			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InZNYjVTYWF6bDVGUDczbjJtUWF5WCJ9.eyJpc3MiOiJodHRwczovL2Rldi1jaTV6NnpvNC5ldS5hdXRoMC5jb20vIiwic3ViIjoieUZlNEFvakFIdVdRekh3VWZQR1FkQzVKZ3dWVFBIRGhAY2xpZW50cyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3QvIiwiaWF0IjoxNjA0NDA3ODYyLCJleHAiOjE2MDQ0OTQyNjIsImF6cCI6InlGZTRBb2pBSHVXUXpId1VmUEdRZEM1Smd3VlRQSERoIiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.YS4PvMnpXMfcVUBsCAh4Bc1lxZeD63C1pxAmFvNcU1XnvjqHXvxDaU1SpxNnLIUsoANDs27vJWs6-Q81KCkvhmB8wW5ym9KnAHmUWFkbIwButer9ya0GwamVxwtpL3N-0odpLXFtnkWqk67n-8qnftvdcgHBvA0BdozEYHdsheH4NMttA6KpUuVem8dHipw63mhKP1zoewa_DFign_v6-u9SEsBh6tkJONa7CzOeIyyhKU4UOb1NsXBa-kDMPiK6uP6fo1SgI0p2-MNQW7WomgpycL_SqLQVEAQlDUY3Wax_XYUcwg-B8YZ2iviloNTfQ5peAxAFX3KjnmyouJA-2w"
 		},
 		{
-			"id": "292719b4-e8a3-4164-bc88-6c341045d59c",
+			"id": "8588c863-bca6-4587-9b8c-897358a02e7e",
 			"key": "first_blog_id",
 			"value": "1"
 		},
 		{
-			"id": "07af566e-2295-4f59-9011-9735374ec015",
+			"id": "4c359dfb-ac82-49e0-8199-bb6cbf164a8c",
 			"key": "second_blog_id",
 			"value": "1"
 		}
