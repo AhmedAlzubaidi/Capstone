@@ -27,9 +27,7 @@ class CapstoneTestCase(unittest.TestCase):
         self.app = app
         self.app.config['DEBUG'] = False
         self.client = self.app.test_client
-        self.database_path = 'postgres://jguyipenxdzxig:ef1a95cfcbc265ae17ad55d95f7\
-        ba4b794e1d03f58940c2df9f9c9216509b2e2@ec2-54-166-114-48.compute-1.amazonaws.\
-        com:5432/d9u9sernqgqat8'
+        self.database_path = os.environ.get('TEST_DATABASE_URI')
         setup_db(self.app, self.database_path)
 
         # binds the app to the current context

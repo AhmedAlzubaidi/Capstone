@@ -1,0 +1,5 @@
+export AUTH0_DOMAIN='replace it with your auth0 domain'
+export ALGORITHMS='RS256'
+export API_AUDIENCE='replace it with your auth0 api audience'
+export DATABASE_URI='replace it with your postgres database uri'
+export TEST_DATABASE_URI='replace it with your postgres test database uri'
