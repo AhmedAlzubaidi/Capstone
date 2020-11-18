@@ -19,7 +19,7 @@ from server import app
 class CapstoneTestCase(unittest.TestCase):
     """This class represents the capstone test case"""
     headers = {
-        'Authorization': 'Bearer ' + '<access_token>'
+        'Authorization': 'Bearer ' + os.environ.get('ACCESS_TOKEN')
     }
 
     def setUp(self):
